@@ -6,6 +6,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'airbnb',
     'airbnb/hooks',
+    'prettier'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
