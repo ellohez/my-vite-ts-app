@@ -1,0 +1,33 @@
+/* TODO: Create styles */
+/* TODO: Check accessibility */
+.bold-input {
+    border-style: solid;
+    border-color: darkgrey;
+    border-radius: 3px;
+    box-shadow: 3px 3px 1px darkgrey;
+    padding: 2em;
+  }
+
+.grid {
+    --column-count: 1;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(var(--column-count), 1fr);
+  }
+  
+  .card {
+  /* TODO: Need a card style for the label and input? */
+  }
+
+  .input-label {
+    padding: 2em;
+  }
+
+  /* TODO: Test responsiveness - is px the best way to do this? */
+  @media (width > 600px) {
+    .grid {--column-count: 2; }
+  }
+
+  @media (width > 900px) {
+    .grid {--column-count: 2; }
+  }

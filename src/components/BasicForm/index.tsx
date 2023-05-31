@@ -1,4 +1,5 @@
 import React, { FocusEvent, FC, useState, ChangeEvent } from 'react';
+import './styles.css'
 interface TitleProps {
   title: string; // Required 
   subtitle?: string; // optional
@@ -30,15 +31,19 @@ const BasicForm: FC<TitleProps> = ({ title, subtitle, children }) => {
         <h3>{subtitle}</h3>
         <div>{children}</div>
 
-      <form>
+      <form className='grid'>
           {/* TODO - checkout aria-placeholder, would descriptive label be preferable? */}
-          <label htmlFor='input1' id='inputLabel'>Input1:</label>
+          <label 
+            className='input-label'
+            htmlFor='input1' 
+            id='inputLabel1'>Input1:</label>
           <input
+            className='bold-input'
             name='input1'
             id='input1'
             placeholder='your input here'
             aria-placeholder='your input here'
-            aria-labelledby='inputLabel'
+            aria-labelledby='inputLabel1'
             aria-required='true'
             value={userInput}
             onBlur={blurHandler}
@@ -46,6 +51,20 @@ const BasicForm: FC<TitleProps> = ({ title, subtitle, children }) => {
           />
           {isBlur && !isValid && <p className="error">The name you entered is not valid</p>}
           {isBlur && isValid && <p className="success">The name you entered looks good</p>}
+
+          <label htmlFor='input2' id='inputLabel2'>Input2:</label>
+          <input
+            className='bold-input'
+            name='input2'
+            id='input2'
+            placeholder='more input here'
+            aria-placeholder='more input here'
+            aria-labelledby='inputLabel2'
+            aria-required='true'
+            // value={userInput}
+            // onBlur={blurHandler}
+            // onChange={changeHandler}
+          />
       </form>
       </div>
   )
