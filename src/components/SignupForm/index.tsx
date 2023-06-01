@@ -12,6 +12,7 @@ const SignupForm = (): JSX.Element => {
                       'Address'];
 // TODO: Check TS - using object as state with initial null 
   const [page, setPage] = useState(0);
+  // TODO: TS type for formData
   const [formData, setFormData] = useState({
                     email: '',
                     password: '',
