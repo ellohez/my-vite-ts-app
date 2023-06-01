@@ -28,13 +28,13 @@ const LoginDetails = (formData, setFormData): JSX.Element => {
           <label 
             className='input-label'
             htmlFor='email' 
-            id='emailLabel'>Input1:</label>
+            id='emailLabel'>Email:</label>
           <input
             className='bold-input'
             name='email'
             id='email'
-            placeholder='your input here'
-            aria-placeholder='your input here'
+            placeholder='your email here'
+            aria-placeholder='your email here'
             aria-labelledby='emailLabel'
             aria-required='true'
             value={formData.email}
@@ -45,7 +45,8 @@ const LoginDetails = (formData, setFormData): JSX.Element => {
           {isBlur && isValid && <p className="success">The name you entered looks good</p>}
         </div>
         <div className='card'>
-          <label htmlFor='input2' 
+          <label 
+          htmlFor='input2' 
           id='inputLabel2'>Input2:</label>
           <input
             className='bold-input'
