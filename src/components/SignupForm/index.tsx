@@ -1,13 +1,9 @@
 import React, { FocusEvent, FC, useState, ChangeEvent } from 'react';
 import './styles.css'
-interface TitleProps {
-  title: string; // Required 
-  subtitle?: string; // optional
-  children?: React.ReactNode
-}
+
 
 // FC (Functional Component) interface always adds the 'children' prop 
-const BasicForm: FC<TitleProps> = ({ title, subtitle, children }) => {
+const SignupForm: FC = () => {
 
   // 
   const [userInput, setUserInput] = useState('');
@@ -26,12 +22,8 @@ const BasicForm: FC<TitleProps> = ({ title, subtitle, children }) => {
   }
     
   return (
-      <div>
-        <h1>{title}</h1>
-        <h3>{subtitle}</h3>
-        <div>{children}</div>
-
-      <form className='grid'>
+      <>
+      <div className='grid'>
           {/* TODO - checkout aria-placeholder, would descriptive label be preferable? */}
           <label 
             className='input-label'
@@ -65,9 +57,9 @@ const BasicForm: FC<TitleProps> = ({ title, subtitle, children }) => {
             // onBlur={blurHandler}
             // onChange={changeHandler}
           />
-      </form>
       </div>
+      </>
   )
 }
 
-export default BasicForm;
+export default SignupForm;

@@ -9,10 +9,11 @@
   }
 
 .grid {
-    --column-count: 1;
+    --column-count: 2;
     display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(var(--column-count), 1fr);
+    gap: 2em;
+    /* grid-template-columns: repeat(var(--column-count), 1fr); */
+    grid-template-columns: 1fr, 2fr;
   }
   
   .card {
