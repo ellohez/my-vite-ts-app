@@ -6,8 +6,9 @@
   /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   /* color-scheme: light dark; */
 
-  /* color: #fff;
-  background-color: #046B99; */
+  color: #fff;
+  background-color: #046B99;
+  /* background: linear-gradient(45deg, red, blue); */
  
 }
 
@@ -20,7 +21,7 @@ across document is best practice */
   --font-size: calc((var(--pixels)/16) * 1rem);
   font-size: var(--font-size); /* To use on an HTML element */
   line-height: 1.5; 
-  background: linear-gradient(#e66465 #9198e5);
+  /* background: linear-gradient(#e66465 #9198e5); */
 }
 
 h1 {

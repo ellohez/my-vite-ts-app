@@ -13,7 +13,6 @@
     --column-count: 1;
     display: grid;
     /* gap: 2em; */
-    background: white;
     grid-template-columns: repeat(var(--column-count), 1fr);
     align-items: center;
   }
