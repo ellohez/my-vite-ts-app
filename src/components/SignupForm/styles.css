@@ -13,8 +13,9 @@
     --column-count: 1;
     display: grid;
     /* gap: 2em; */
+    background: white;
     grid-template-columns: repeat(var(--column-count), 1fr);
-
+    align-items: center;
   }
   
   .card {
@@ -23,7 +24,7 @@
   }
 
   .input-label {
-    padding: 2em;
+    padding: 1em;
   }
 
   /* TODO: Test responsiveness - is px the best way to do this? */

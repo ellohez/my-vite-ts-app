@@ -1,5 +1,6 @@
 import SignupForm from './components/SignupForm'
-import './App.css'
+// import './App.css'
+import './index.css'
 
 function App() {
 
