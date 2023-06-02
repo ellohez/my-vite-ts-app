@@ -1,5 +1,13 @@
 /* TODO: Create styles */
 /* TODO: Check accessibility */
+
+.input-label {
+  padding: 1em;
+  display: inline-block;
+  width: fit-content;
+  text-align: right;
+}
+
 .bold-input {
     border-style: solid;
     border-color: black;
@@ -20,10 +28,6 @@
   .card {
   /* TODO: Need a card style for the label and input? */
     grid-template-columns: 1fr, 2fr;
-  }
-
-  .input-label {
-    padding: 1em;
   }
 
   /* TODO: Test responsiveness - is px the best way to do this? */
