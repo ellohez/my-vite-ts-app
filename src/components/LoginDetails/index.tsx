@@ -35,7 +35,6 @@ const LoginDetails = (formData, setFormData): JSX.Element => {
         </div>
         <div className='col-75'>
           <input
-            // className='bold-input'
             name='email'
             id='email'
             type='text'
