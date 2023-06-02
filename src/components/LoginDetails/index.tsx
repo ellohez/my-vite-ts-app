@@ -25,7 +25,7 @@ const LoginDetails = (formData, setFormData): JSX.Element => {
   return (
     <>
       <div className='row'>
-        <div className='col-25'>
+        <div className='col-15'>
           {/* TODO - checkout aria-placeholder, would descriptive label be preferable? */}
           <label
             placeholder='your email here'
@@ -35,9 +35,11 @@ const LoginDetails = (formData, setFormData): JSX.Element => {
         </div>
         <div className='col-75'>
           <input
-            className='bold-input'
+            // className='bold-input'
             name='email'
             id='email'
+            type='text'
+            placeholder='your email here'
             aria-placeholder='your email here'
             aria-labelledby='emailLabel'
             aria-required='true'
@@ -50,9 +52,9 @@ const LoginDetails = (formData, setFormData): JSX.Element => {
         </div>
       </div>
       <div className='row'>
-        <div className='col-25'>
+        <div className='col-15'>
           <label
-            className='bold-input'
+            className='input-label'
             htmlFor='password'
             id='pwd-label'>Password:</label>
         </div>
@@ -60,6 +62,7 @@ const LoginDetails = (formData, setFormData): JSX.Element => {
           <input
             name='password'
             id='password'
+            type='text'
             placeholder='your password here'
             aria-placeholder='your password here'
             aria-labelledby='pwd-label'
