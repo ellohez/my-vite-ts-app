@@ -1,6 +1,17 @@
   /* Do not set a font-size on a :root, body nor html level */
   /* Let your main text size be decided by the browser or the user settings */
 
+/* Defining custom properties at the top level so that it can be applied globally
+across document is best practice */
+
+/* Pixel to rem calc */
+* {
+  --main-color: #046B99;
+  --font-size: calc((var(--pixels)/16) * 1em);
+  /* To use on an HTML element */
+  /* font-size: var(--font-size);  */
+  line-height: 1.5;
+}
 :root {
   /* Previous styles */
   /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -8,21 +19,14 @@
 
   /* TODO: Ensure colours are web safe! */
   color: #fff;
-  background-color: #046B99;
+  background-color: var(--main-color);
   /* background: linear-gradient(45deg, red, blue); */
- 
+  
+
 }
 
-
-/* Defining custom properties at the top level so that it can be applied globally
-across document is best practice */
-
-/* Pixel to rem calc */
-* { 
-  --font-size: calc((var(--pixels)/16) * 1rem);
-  font-size: var(--font-size); /* To use on an HTML element */
-  line-height: 1.5; 
-  /* background: linear-gradient(#e66465 #9198e5); */
+.header {
+  color: var(--main-color);
 }
 
 h1 {
@@ -30,13 +34,10 @@ h1 {
   font-size: var(--font-size);
 }
 
-
 h2 {
   --pixels: 24; /* Equals to 24px */
   font-size: var(--font-size);
 }
-
-
 
 /* a {
   font-weight: 500;
