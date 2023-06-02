@@ -8,12 +8,12 @@
   text-align: right;
 }
 
-.bold-input {
+input [type=text] {
     border-style: solid;
     border-color: black;
     border-radius: 2px;
     box-shadow: 3px 3px 1px lightgrey;
-    /* margin: 1em;
+    /* margin: 1em; 
     padding: 1em; */
   }
 
