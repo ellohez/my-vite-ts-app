@@ -25,13 +25,10 @@ across document is best practice */
 
 }
 
-.header {
-  color: var(--main-color);
-}
-
 h1 {
   --pixels: 48; /* Equals to 48px */
   font-size: var(--font-size);
+  padding-left: 0.5em;
 }
 
 h2 {
