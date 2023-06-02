@@ -30,7 +30,7 @@ const SignupForm = (): JSX.Element => {
     
   return (
     <>
-    {/* Breadcrumb navigation */}
+      {/* Breadcrumb navigation */}
       <div className='bread-crumb'>
       </div>
       <div className='header'>
@@ -40,8 +40,9 @@ const SignupForm = (): JSX.Element => {
       <div className='form-container'>
             {/* TODO: ?? Do we need a form element? */}
             {/* Load the relevant component for the page number */}
-            <div className='body'>{PageDisplay()}</div>
-            <div className='footer'>
+            <div className='form-body'>{PageDisplay()}
+            </div>
+            <div className='row footer'>
                 <button
                   disabled={page == 0}
                   onClick={() => {
