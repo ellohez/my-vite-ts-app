@@ -1,14 +1,15 @@
 import { FocusEvent, useState, ChangeEvent } from 'react';
 
+// TODO: Fix type issue for props
 const LoginDetails = (formData, setFormData): JSX.Element => {
 
-	//const [userInput, setUserInput] = useState('');
+  //const [userInput, setUserInput] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [isBlur, setIsBlur] = useState(false);
 
   const blurHandler = (e: FocusEvent<HTMLInputElement>) => {
     //setUserInput(e.target.value);
-    setFormData({...formData, email: e.target.value});
+    setFormData({ ...formData, email: e.target.value });
 
     setIsBlur(true);
     // For now - consider input valid if it contains '@'
@@ -17,23 +18,26 @@ const LoginDetails = (formData, setFormData): JSX.Element => {
 
   // TODO: remove userInput state hook
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-      //setUserInput(e.target.value);
-      setFormData({...formData, email: e.target.value});
+    //setUserInput(e.target.value);
+    setFormData({ ...formData, email: e.target.value });
   }
-    
+
   return (
-      <div className='grid'>
-        <div className='card'>
+    <>
+      <div className='row'>
+        <div className='col-25'>
           {/* TODO - checkout aria-placeholder, would descriptive label be preferable? */}
-          <label 
+          <label
+            placeholder='your email here'
             className='input-label'
-            htmlFor='email' 
+            htmlFor='email'
             id='emailLabel'>Email:</label>
+        </div>
+        <div className='col-75'>
           <input
             className='bold-input'
             name='email'
             id='email'
-            placeholder='your email here'
             aria-placeholder='your email here'
             aria-labelledby='emailLabel'
             aria-required='true'
@@ -44,25 +48,30 @@ const LoginDetails = (formData, setFormData): JSX.Element => {
           {isBlur && !isValid && <p className="error">The name you entered is not valid</p>}
           {isBlur && isValid && <p className="success">The name you entered looks good</p>}
         </div>
-        <div className='card'>
-          <label 
-          htmlFor='input2' 
-          id='inputLabel2'>Input2:</label>
-          <input
+      </div>
+      <div className='row'>
+        <div className='col-25'>
+          <label
             className='bold-input'
-            name='input2'
-            id='input2'
-            placeholder='more input here'
-            aria-placeholder='more input here'
-            aria-labelledby='inputLabel2'
+            htmlFor='password'
+            id='pwd-label'>Password:</label>
+        </div>
+        <div className='col-75'>
+          <input
+            name='password'
+            id='password'
+            placeholder='your password here'
+            aria-placeholder='your password here'
+            aria-labelledby='pwd-label'
             aria-required='true'
-            // value={userInput}
-            // onBlur={blurHandler}
-            // onChange={changeHandler}
-            // type='password'
+          // value={userInput}
+          // onBlur={blurHandler}
+          // onChange={changeHandler}
+          // type='password'
           />
         </div>
       </div>
+    </>
   )
 }
 
