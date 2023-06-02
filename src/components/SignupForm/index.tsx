@@ -30,19 +30,22 @@ const SignupForm = (): JSX.Element => {
     
   return (
     <>
+      <div>
+        <h1>Let's get you signed up!</h1>
+      </div>
       {/* Breadcrumb navigation */}
       <div className='bread-crumb'>
-      </div>
-      <div className='header'>
-              {/* Display the relevant title for the current page */}
-              <h1>{formTitles[page]}</h1>
-      </div>
+        {formTitles.join(' > ')}
+      </div>      
       <div className='form-container'>
-            {/* TODO: ?? Do we need a form element? */}
-            {/* Load the relevant component for the page number */}
-            <div className='form-body'>{PageDisplay()}
-            </div>
-            <div className='row footer'>
+        {/* TODO: ?? Do we need a form element? */}
+        {/* Load the relevant component for the page number */}
+        <div className='header'>
+          {/* Display the relevant title for the current page */}
+          <h2>{formTitles[page]}</h2>
+        </div>
+        {PageDisplay()}
+        <div className='row'>
                 <button
                   disabled={page == 0}
                   onClick={() => {
