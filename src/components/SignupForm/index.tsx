@@ -29,13 +29,16 @@ const SignupForm = (): JSX.Element => {
   };
     
   return (
-    <div className='form'>
+    <>
+    {/* Breadcrumb navigation */}
       <div className='bread-crumb'>
-        <div className='form-container'>
-            <div className='header'>
+      </div>
+      <div className='header'>
               {/* Display the relevant title for the current page */}
               <h1>{formTitles[page]}</h1>
-            </div>
+      </div>
+      <div className='form-container'>
+            {/* TODO: ?? Do we need a form element? */}
             {/* Load the relevant component for the page number */}
             <div className='body'>{PageDisplay()}</div>
             <div className='footer'>
@@ -53,10 +56,9 @@ const SignupForm = (): JSX.Element => {
                   }}>
                   Next
                 </button>
-            </div>
-        </div>
+          </div>
       </div>
-    </div>
+    </>
   )
 }
 
