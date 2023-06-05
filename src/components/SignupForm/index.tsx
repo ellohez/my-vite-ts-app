@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import LoginDetails from '../LoginDetails';
 import './styles.css'
 
@@ -62,25 +62,25 @@ const SignupForm = (): JSX.Element => {
 
   return (
     <>
-      <div>
+      <div className='title'>
         <h2>Let's get you signed up!</h2>
       </div>
       {/* Draw breadcrumb trail, showing where the user is up to */}
-
       {BreadcrumbDisplay()}
-
-
       <div className='form-container'>
         {/* TODO: ?? Do we need a form element? */}
-        {/* Load the relevant component for the page number */}
         <div className='header'>
           {/* Display the relevant title for the current page */}
           <h2>{formTitles[page]}</h2>
         </div>
+        {/* Display the relevant page for the current step */}
         {PageDisplay()}
         <div className='row'>
           <button
-            disabled={page == 0}
+          // Aria-disabled attibute not needed if disabled 
+          // attribute included
+            disabled={page == 0} 
+            tabIndex={0}
             onClick={() => {
               setPage((currentPg) => currentPg - 1);
             }}>
