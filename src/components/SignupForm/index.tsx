@@ -6,7 +6,8 @@ import './styles.css'
 // If needed, add to interface as optional (using '?')
 const SignupForm = (): JSX.Element => {
 
-  const formTitles: Array<string> = ['Sign Up',
+  const formTitles: Array<string> = [
+    'Sign Up',
     'Login Details',
     'Personal Information',
     'Address'];
@@ -31,26 +32,30 @@ const SignupForm = (): JSX.Element => {
   };
 
   const BreadcrumbDisplay = () => {
-    return (
-      // TODO: Change this to a standard for loop 
-      // so we can calculate the steps remaining.
-      // or can we stop map when we get to the current stage?
-      // see - https://www.telerik.com/blogs/beginners-guide-loops-in-react-jsx 
-      <div className='breadcrumb-trail'>
-        {formTitles.map((title, index) => (
-          <div className='breadcrumb-item'>
-            <p>
-              Step {index + 1}
-            </p>
-            <p>
-              {title} &gt;
-            </p>
-          </div>
-        ))}
+    let content: Array<JSX.Element> = [];
+
+    for (let i = 0; i < page; i++) {
+      content.push(
         <div className='breadcrumb-item'>
-          <p>Steps remaining</p>
-          <p>TODO</p>
-        </div>
+          <p>
+            Step {i + 1}
+          </p>
+          <p>
+            {formTitles[i]} &gt;
+          </p>
+        </div>);
+    }
+
+    content.push(
+      <div className='breadcrumb-item'>
+        <p>Steps Remaining</p>
+        <p>{formTitles.length - page}</p>
+      </div>
+    );
+
+    return (
+      <div className='breadcrumb-trail'>
+        {content}
       </div>
     )
   }
@@ -58,10 +63,13 @@ const SignupForm = (): JSX.Element => {
   return (
     <>
       <div>
-        <h1>Let's get you signed up!</h1>
+        <h2>Let's get you signed up!</h2>
       </div>
       {/* Draw breadcrumb trail, showing where the user is up to */}
+
       {BreadcrumbDisplay()}
+
+
       <div className='form-container'>
         {/* TODO: ?? Do we need a form element? */}
         {/* Load the relevant component for the page number */}
