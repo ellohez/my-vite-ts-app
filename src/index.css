@@ -15,8 +15,8 @@ html {
     /* font-size: 100%; */
     /* unneccesary - This is done in reset.css */
   
-    /* Pixel to em calc */
-  --font-size: calc((var(--pixels)/16) * 1em);
+    /* Pixel to em calc - NOTE: doesn't seem to work */
+      /* --font-size: calc((var(--pixels)/16) * 1em); */
   line-height: 1.5;
   /* TODO: Ensure colours are web safe! */
   color: #fff;
@@ -33,7 +33,7 @@ h1,
   /* Equates to 48px */
   /* font-size: var(--font-size); */
   /* with default font size @ 100% this should be 4 x 16 px = 64px */
-  font-size: 4em;
+  font-size: 4rem;
     
 }
 
