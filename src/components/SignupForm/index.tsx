@@ -85,17 +85,20 @@ const SignupForm = (): JSX.Element => {
         {PageDisplay()}
         <div className='row'>
           <button
+            className='form-button'
           // Aria-disabled attibute not needed if disabled 
           // attribute included
             disabled={page == 0} 
             tabIndex={0}
-            type='button'
+            // No need to add Aria role of 'button' if button has type='button'
+            type='button' 
             onClick={() => {
               setPage((currentPg) => currentPg - 1);
             }}>
             Previous
           </button>
           <button
+            className='form-button'
             type='button'
             disabled={page == formTitles.length - 1}
             onClick={() => {
