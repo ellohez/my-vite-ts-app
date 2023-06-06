@@ -1,4 +1,6 @@
 /*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
+/* This is imported into index.css before any custom styles are created
+  resets any browser related styles */
 html,
 body,
 p,
