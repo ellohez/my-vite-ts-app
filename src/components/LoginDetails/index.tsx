@@ -13,7 +13,7 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
   const [isValid, setIsValid] = useState(false);
   const [isBlur, setIsBlur] = useState(false);
 
-  const inputRef = useRef(null);
+  // const inputRef = useRef(null);
 
   const blurHandler = (e: FocusEvent<HTMLInputElement>) => {
 
@@ -30,12 +30,12 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
     setUserData({ ...userData, email: e.target.value });
   }
 
-  useEffect(() => {
-    console.log("Login details useEffect");
-    if (inputRef.current != null) {
-      inputRef.current.focus();
-    }
-  }, [])
+  // useEffect(() => {
+  //   console.log("Login details useEffect");
+  //   if (inputRef.current != null) {
+  //     inputRef.current.focus();
+  //   }
+  // }, [])
 
   return (
     <>
@@ -60,7 +60,7 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
             value={userData.email}
             onBlur={blurHandler}
             onChange={changeHandler}
-            ref={inputRef}
+            // ref={inputRef}
           />
           {/* TODO: Increase validation and give specific help on what is wrong/missing etc.  */}
           {isBlur && !isValid && <p className="error"><span>&#10007;</span> The name you entered is not valid</p>}
