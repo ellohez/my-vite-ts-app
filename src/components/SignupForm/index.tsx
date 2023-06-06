@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import LoginDetails from '../LoginDetails';
 import './styles.css'
+import UserData from '../../types';
 
 // FC (Functional Component) interface does not include 'children'
 // If needed, add to interface as optional (using '?')
@@ -12,22 +13,29 @@ const SignupForm = (): JSX.Element => {
     'Personal Information',
     'Address'];
 
-  // TODO: Check TS - using object as state with initial null
-  const [page, setPage] = useState(0);
+  // Store the current page the user is viewing
+  const [page, setPage] = useState<number>(0);
 
-  // TODO: TS type for formData
-  const [formData, setFormData] = useState({
+  // TS type for formData
+  const [userData, setUserData] = useState<UserData>({
     email: '',
     password: '',
     firstName: '',
     surname: '',
     birthDate: null,
     address: '',
-  })
+  });
+
+  // TODO: Use this to control the focus 
+  // to make buttons navigable by keyboard
+  useEffect(() => {
+    console.log("SignUpForm useEffect");
+  }, []);
+
 
   const PageDisplay = () => {
     if (page === 1) {
-      return <LoginDetails />
+      return <LoginDetails userData={userData} setUserData={setUserData} />
     }
   };
 
@@ -81,12 +89,14 @@ const SignupForm = (): JSX.Element => {
           // attribute included
             disabled={page == 0} 
             tabIndex={0}
+            type='button'
             onClick={() => {
               setPage((currentPg) => currentPg - 1);
             }}>
             Previous
           </button>
           <button
+            type='button'
             disabled={page == formTitles.length - 1}
             onClick={() => {
               setPage((currentPg) => currentPg + 1);
