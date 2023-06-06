@@ -1,26 +1,41 @@
-import { FocusEvent, useState, ChangeEvent } from 'react';
+import { FocusEvent, ChangeEvent, useEffect, useState, useRef } from 'react';
+import UserData from '../../types';
+
+interface loginDetailsProps {
+  userData: UserData;
+  setUserData: (data: UserData) => void;
+}
 
 // TODO: Fix type issue for props
-const LoginDetails = (formData, setFormData): JSX.Element => {
+const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): JSX.Element => {
 
   //const [userInput, setUserInput] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [isBlur, setIsBlur] = useState(false);
 
+  const inputRef = useRef(null);
+
   const blurHandler = (e: FocusEvent<HTMLInputElement>) => {
-    //setUserInput(e.target.value);
-    setFormData({ ...formData, email: e.target.value });
+
+    setUserData({ ...userData, email: e.target.value });
 
     setIsBlur(true);
     // For now - consider input valid if it contains '@'
-    setIsValid(formData.email.includes('@'));
+    setIsValid(userData.email.includes('@'));
   }
 
   // TODO: remove userInput state hook
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    //setUserInput(e.target.value);
-    setFormData({ ...formData, email: e.target.value });
+
+    setUserData({ ...userData, email: e.target.value });
   }
+
+  useEffect(() => {
+    console.log("Login details useEffect");
+    if (inputRef.current != null) {
+      inputRef.current.focus();
+    }
+  }, [])
 
   return (
     <>
@@ -42,12 +57,14 @@ const LoginDetails = (formData, setFormData): JSX.Element => {
             aria-placeholder='your email here'
             aria-labelledby='emailLabel'
             aria-required='true'
-            value={formData.email}
+            value={userData.email}
             onBlur={blurHandler}
             onChange={changeHandler}
+            ref={inputRef}
           />
-          {isBlur && !isValid && <p className="error">The name you entered is not valid</p>}
-          {isBlur && isValid && <p className="success">The name you entered looks good</p>}
+          {/* TODO: Increase validation and give specific help on what is wrong/missing etc.  */}
+          {isBlur && !isValid && <p className="error"><span>&#10007;</span> The name you entered is not valid</p>}
+          {isBlur && isValid && <p className="success"><span>&#10003;</span> The name you entered looks good</p>}
         </div>
       </div>
       <div className='row'>
