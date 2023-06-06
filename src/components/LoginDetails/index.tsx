@@ -24,9 +24,7 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
     setIsValid(userData.email.includes('@'));
   }
 
-  // TODO: remove userInput state hook
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-
     setUserData({ ...userData, email: e.target.value });
   }
 
@@ -36,6 +34,11 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
   //     inputRef.current.focus();
   //   }
   // }, [])
+
+  const togglePassword = (e: ChangeEvent<HTMLInputElement>) => {
+    // TODO: This should be targeting the relevant password input
+    e.target.type = (e.target.type === 'password') ? 'text' : 'password';
+  }
 
   return (
     <>
@@ -67,6 +70,7 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
           {isBlur && isValid && <p className="success"><span>&#10003;</span> The name you entered looks good</p>}
         </div>
       </div>
+      <div className='separator'></div>
       <div className='row'>
         <div className='col-15'>
           <label
@@ -78,10 +82,37 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
           <input
             name='password'
             id='password'
-            type='text'
+            type='password'
             placeholder='your password here'
             aria-placeholder='your password here'
             aria-labelledby='pwd-label'
+            aria-required='true'
+          // value={userInput}
+          // onBlur={blurHandler}
+          // onChange={changeHandler}
+          // type='password'
+          />
+        </div>
+        {/* Toggle between password visibility */}
+        <input
+          type='checkbox'
+          onClick={togglePassword()} />Show Password
+      </div>
+      <div className='row'>
+        <div className='col-15'>
+          <label
+            className='input-label'
+            htmlFor='password-confirm'
+            id='pwd-confirm-label'>Confirm password:</label>
+        </div>
+        <div className='col-75'>
+          <input
+            name='password-confirm'
+            id='password-confirm'
+            type='password'
+            placeholder='confirm your password'
+            aria-placeholder='confirm your password'
+            aria-labelledby='pwd-confirm-label'
             aria-required='true'
           // value={userInput}
           // onBlur={blurHandler}
