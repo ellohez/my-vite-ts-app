@@ -79,7 +79,7 @@ const SignupForm = (): JSX.Element => {
         {/* TODO: ?? Do we need a form element? */}
         <div className='header'>
           {/* Display the relevant title for the current page */}
-          <h2>{formTitles[page]}</h2>
+          <h3>{formTitles[page]}</h3>
         </div>
         {/* Display the relevant page for the current step */}
         {PageDisplay()}
