@@ -1,5 +1,8 @@
-  /* Do not set a font-size on a :root, body nor html level */
-  /* Let your main text size be decided by the browser or the user settings */
+/* TODO - reset css styles and then cascade custom css styles on top */
+@import './reset.css';
+
+/* Do not set a fixed font-size on a :root, body nor html level */
+/* Let your main text size be decided by the browser or the user settings */
 
 /* Defining custom properties at the top level so that it can be applied globally
 across document is best practice */
