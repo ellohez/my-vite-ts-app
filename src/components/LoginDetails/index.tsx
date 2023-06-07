@@ -10,6 +10,7 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
 
   const [isValid, setIsValid] = useState(false);
   const [isBlur, setIsBlur] = useState(false);
+  const [pwdIsVisible, setPwdIsVisible] = useState(false);
 
   const blurHandler = (e: FocusEvent<HTMLInputElement>) => {
 
@@ -23,11 +24,6 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setUserData({ ...userData, email: e.target.value });
   }
-
-  // const togglePassword = (e: ChangeEvent<HTMLInputElement>) => {
-  //   // TODO: This should be targeting the relevant password input
-  //   e.target.type = (e.target.type === 'password') ? 'text' : 'password';
-  // }
 
   return (
     <>
@@ -54,8 +50,8 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
             onChange={changeHandler}
           />
           {/* TODO: Increase validation and give specific help on what is wrong/missing etc.  */}
-          {isBlur && !isValid && <p className="error"><span>&#10007;</span> The name you entered is not valid</p>}
-          {isBlur && isValid && <p className="success"><span>&#10003;</span> The name you entered looks good</p>}
+          {isBlur && !isValid && <p className="error"><span>&#10007;</span> The email you entered is not valid</p>}
+          {isBlur && isValid && <p className="success"><span>&#10003;</span> The email you entered looks good</p>}
         </div>
       </div>
       <div className='separator'></div>
@@ -70,7 +66,7 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
           <input
             name='password'
             id='password'
-            type='password'
+            type={pwdIsVisible ? 'text' : 'password'}
             placeholder='your password here'
             aria-placeholder='your password here'
             aria-labelledby='pwd-label'
@@ -81,12 +77,22 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
           // type='password'
           />
         </div>
+      </div>
+      <div>
         {/* Toggle between password visibility */}
+        <label
+          className='input-label'
+          htmlFor="pwdCheckbox"
+          id='pwdCheckboxLabel'>Show password?</label>
         <input
+          id='pwdCheckbox'
+          name='pwdCheckbox'
           type='checkbox'
-        //onClick={togglePassword()} 
+          checked={pwdIsVisible}
+          aria-labelledby='pwdCheckboxLabel'
+          aria-checked={pwdIsVisible}
+          onChange={() => { setPwdIsVisible((pwdIsVisible) => !pwdIsVisible) }}
         />
-        Show Password
       </div>
       <div className='row'>
         <div className='col-15'>
@@ -107,7 +113,6 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
           // value={userInput}
           // onBlur={blurHandler}
           // onChange={changeHandler}
-          // type='password'
           />
         </div>
       </div>
