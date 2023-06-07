@@ -42,7 +42,6 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
         </div>
         <div className='col-75'>
           <input
-            autoFocus
             name='email'
             id='email'
             type='text'
