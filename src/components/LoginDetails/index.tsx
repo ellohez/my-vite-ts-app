@@ -28,6 +28,13 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
   return (
     <>
       <div className='row'>
+        <div className='col-75'>
+          <label className='help-label'>
+            <p>Please enter an email address in</p>
+            <p>the format 'name@domain.com'</p></label>
+        </div>
+      </div>
+      <div className='row'>
         <div className='col-25'>
           {/* TODO - checkout aria-placeholder, would descriptive label be preferable? */}
           <label
@@ -50,7 +57,7 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
             onChange={changeHandler}
           />
           {/* TODO: Increase validation and give specific help on what is wrong/missing etc.  */}
-          {isBlur && !isValid && <p className="error"><span>&#10007;</span> The email you entered is not valid</p>}
+          {isBlur && !isValid && <p className="error"><span>&#10007;</span> The email you entered is missing '@'</p>}
           {isBlur && isValid && <p className="success"><span>&#10003;</span> The email you entered looks good</p>}
         </div>
       </div>
