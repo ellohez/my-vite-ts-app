@@ -28,7 +28,7 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
   return (
     <>
       <div className='row'>
-        <div className='col-15'>
+        <div className='col-25'>
           {/* TODO - checkout aria-placeholder, would descriptive label be preferable? */}
           <label
             placeholder='your email here'
@@ -56,7 +56,7 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
       </div>
       <div className='separator'></div>
       <div className='row'>
-        <div className='col-15'>
+        <div className='col-25'>
           <label
             className='input-label'
             htmlFor='password'
@@ -95,7 +95,7 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
         />
       </div>
       <div className='row'>
-        <div className='col-15'>
+        <div className='col-25'>
           <label
             className='input-label'
             htmlFor='password-confirm'
