@@ -52,7 +52,6 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
             value={userData.email}
             onBlur={blurHandler}
             onChange={changeHandler}
-            //ref={inputRef}
           />
           {/* TODO: Increase validation and give specific help on what is wrong/missing etc.  */}
           {isBlur && !isValid && <p className="error"><span>&#10007;</span> The name you entered is not valid</p>}
