@@ -1,4 +1,4 @@
-import { FocusEvent, ChangeEvent, useEffect, useState, useRef } from 'react';
+import { FocusEvent, ChangeEvent, useState } from 'react';
 import UserData from '../../types';
 
 interface loginDetailsProps {
@@ -6,14 +6,10 @@ interface loginDetailsProps {
   setUserData: (data: UserData) => void;
 }
 
-// TODO: Fix type issue for props
 const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): JSX.Element => {
 
-  //const [userInput, setUserInput] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [isBlur, setIsBlur] = useState(false);
-
-  // const inputRef = useRef(null);
 
   const blurHandler = (e: FocusEvent<HTMLInputElement>) => {
 
@@ -28,17 +24,10 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
     setUserData({ ...userData, email: e.target.value });
   }
 
-  // useEffect(() => {
-  //   console.log("Login details useEffect");
-  //   if (inputRef.current != null) {
-  //     inputRef.current.focus();
-  //   }
-  // }, [])
-
-  const togglePassword = (e: ChangeEvent<HTMLInputElement>) => {
-    // TODO: This should be targeting the relevant password input
-    e.target.type = (e.target.type === 'password') ? 'text' : 'password';
-  }
+  // const togglePassword = (e: ChangeEvent<HTMLInputElement>) => {
+  //   // TODO: This should be targeting the relevant password input
+  //   e.target.type = (e.target.type === 'password') ? 'text' : 'password';
+  // }
 
   return (
     <>
@@ -53,6 +42,7 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
         </div>
         <div className='col-75'>
           <input
+            autoFocus
             name='email'
             id='email'
             type='text'
@@ -63,7 +53,7 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
             value={userData.email}
             onBlur={blurHandler}
             onChange={changeHandler}
-            // ref={inputRef}
+            //ref={inputRef}
           />
           {/* TODO: Increase validation and give specific help on what is wrong/missing etc.  */}
           {isBlur && !isValid && <p className="error"><span>&#10007;</span> The name you entered is not valid</p>}
@@ -96,7 +86,9 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
         {/* Toggle between password visibility */}
         <input
           type='checkbox'
-          onClick={togglePassword()} />Show Password
+        //onClick={togglePassword()} 
+        />
+        Show Password
       </div>
       <div className='row'>
         <div className='col-15'>
