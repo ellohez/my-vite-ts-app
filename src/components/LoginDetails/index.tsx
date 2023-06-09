@@ -22,8 +22,6 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
     const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     setEmailValid(emailRegex.test(userData.email));
 
-    debugger;
-
     // Make it null safe
     if (emailErrorMessage && emailErrorMessage.current) {
       emailErrorMessage.current.style.display = 'block';
@@ -51,8 +49,7 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
         <div className='col-25'>
 
           {/* TODO - checkout aria-placeholder, would descriptive label be preferable? */}
-          <label
-            placeholder='your email here'
+            <label
             className='input-label'
             htmlFor='email'
             id='emailLabel'>Email:</label>
@@ -66,7 +63,7 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
             aria-placeholder='your email here'
             aria-labelledby='emailLabel'
             aria-required='true'
-              aria-invalid={emailValid}
+              aria-invalid={isBlur && !emailValid}
             value={userData.email}
             onBlur={blurHandler}
             onChange={changeHandler}
