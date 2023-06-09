@@ -10,6 +10,7 @@ across document is best practice */
 /* NOTE: For WCAG AA - ensure a contrast of 4.5:1 minimum */
 
 html {
+  /* RGB value - rgb(4, 107, 153) */
   --main-color: #046B99;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     /* font-size: 100%; */
