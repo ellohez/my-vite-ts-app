@@ -1,4 +1,4 @@
-import { FocusEvent, ChangeEvent, useState } from 'react';
+import { FocusEvent, ChangeEvent, useState, useRef } from 'react';
 import UserData from '../../types';
 
 interface loginDetailsProps {
@@ -8,17 +8,29 @@ interface loginDetailsProps {
 
 const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): JSX.Element => {
 
-  const [isValid, setIsValid] = useState(false);
+  const [emailValid, setEmailValid] = useState(false);
   const [isBlur, setIsBlur] = useState(false);
   const [pwdIsVisible, setPwdIsVisible] = useState(false);
+  // Specify the correct type for useRef to give type safe access
+  const emailErrorMessage = useRef<HTMLInputElement>(null);
 
   const blurHandler = (e: FocusEvent<HTMLInputElement>) => {
 
     setUserData({ ...userData, email: e.target.value });
-
     setIsBlur(true);
+    // TODO: need to test this regex
+    const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    setEmailValid(emailRegex.test(userData.email));
+
+    debugger;
+
+    // Make it null safe
+    if (emailErrorMessage && emailErrorMessage.current) {
+      emailErrorMessage.current.style.display = 'block';
+    } 
     // For now - consider input valid if it contains '@'
-    setIsValid(userData.email.includes('@'));
+    // setEmailError(userData.email.includes('@'));
+    console.log(`isBlur ${isBlur} emailValid ${emailValid} email ${userData.email} test ${emailRegex.test(userData.email)}`);
   }
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,8 +46,10 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
             <p>the format 'name@domain.com'</p></label>
         </div>
       </div>
+      <form>
       <div className='row'>
         <div className='col-25'>
+
           {/* TODO - checkout aria-placeholder, would descriptive label be preferable? */}
           <label
             placeholder='your email here'
@@ -52,13 +66,21 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
             aria-placeholder='your email here'
             aria-labelledby='emailLabel'
             aria-required='true'
+              aria-invalid={emailValid}
             value={userData.email}
             onBlur={blurHandler}
             onChange={changeHandler}
           />
           {/* TODO: Increase validation and give specific help on what is wrong/missing etc.  */}
-          {isBlur && !isValid && <p className="error"><span>&#10007;</span> The email you entered is missing '@'</p>}
-          {isBlur && isValid && <p className="success"><span>&#10003;</span> The email you entered looks good</p>}
+            <div className='error'
+              id='emailErrorMsg'
+              ref={emailErrorMessage}
+              // If bad email input then hidden = false
+              aria-hidden={!emailValid}
+              role='alert'>
+              {isBlur && !emailValid && <p className="error"><span>&#10007;</span> The email you entered is missing '@'</p>}
+              {isBlur && emailValid && <p className="success"><span>&#10003;</span> The email you entered looks good</p>}
+            </div>
         </div>
       </div>
       <div className='separator'></div>
@@ -123,6 +145,7 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
           />
         </div>
       </div>
+      </form>
     </>
   )
 }
