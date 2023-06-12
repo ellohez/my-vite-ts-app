@@ -12,23 +12,54 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
   const [isBlur, setIsBlur] = useState(false);
   const [pwdIsVisible, setPwdIsVisible] = useState(false);
   // Specify the correct type for useRef to give type safe access
-  const emailErrorMessage = useRef<HTMLInputElement>(null);
+  const emailErrorDiv = useRef<HTMLDivElement>(null);
+  let emailErrorMessage: string = '';
 
+  // When the email input has and then loses focus - 
+  // validate the user's entry and update accordingly.
   const blurHandler = (e: FocusEvent<HTMLInputElement>) => {
 
     setUserData({ ...userData, email: e.target.value });
     setIsBlur(true);
-    // TODO: need to test this regex
-    const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    // TODO: if test fails, determine what is wrong and give a 
+    // specific error message
+    const emailRegex: RegExp = new RegExp(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/);
     setEmailValid(emailRegex.test(userData.email));
 
-    // Make it null safe
-    if (emailErrorMessage && emailErrorMessage.current) {
-      emailErrorMessage.current.style.display = 'block';
+    // Make it null safe and display the block now that 
+    // the input has gained and lost focus since rendering. 
+    if (emailErrorDiv && emailErrorDiv.current) {
+      emailErrorDiv.current.style.display = 'block';
     } 
-    // For now - consider input valid if it contains '@'
-    // setEmailError(userData.email.includes('@'));
-    console.log(`isBlur ${isBlur} emailValid ${emailValid} email ${userData.email} test ${emailRegex.test(userData.email)}`);
+  }
+
+  const emailErrorHTML = () => {
+    if (isBlur && !emailValid) {
+      // For now - consider input valid if it contains '@'
+      if (!userData.email.includes('@')) {
+        emailErrorMessage = 'The email address you entered is missing the at \'@\' symbol';
+
+      }
+      else if (!userData.email.includes('.')) {
+        emailErrorMessage = 'The email address you entered is missing a full stop';
+
+      }
+      else {
+        emailErrorMessage = 'The email address is not quite right'
+      }
+      return (
+        <p className="error">
+          <span>&#10007;</span>{emailErrorMessage}</p>
+      )
+    }
+    else if (!isBlur) {
+      emailErrorMessage = ''
+      return <></>;
+    }
+
+    return (
+      <p className="success"><span>&#10003;</span>The email you entered looks good</p>
+    )
   }
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,8 +71,8 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
       <div className='row'>
         <div className='col-75'>
           <label className='help-label'>
-            <p>Please enter an email address in</p>
-            <p>the format 'name@domain.com'</p></label>
+            <p>Please enter an email address in<br />
+              the format 'name@domain.com'</p></label>
         </div>
       </div>
       <form>
@@ -56,6 +87,7 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
         </div>
         <div className='col-75'>
           <input
+              autoFocus // For Screen Readers - this helps the focus start at the first input, rather than the buttons. 
             name='email'
             id='email'
             type='text'
@@ -70,13 +102,12 @@ const LoginDetails: React.FC<loginDetailsProps> = ({ userData, setUserData }): J
           />
           {/* TODO: Increase validation and give specific help on what is wrong/missing etc.  */}
             <div className='error'
-              id='emailErrorMsg'
-              ref={emailErrorMessage}
+              id='emailErrorDiv'
+              ref={emailErrorDiv}
               // If bad email input then hidden = false
               aria-hidden={!emailValid}
               role='alert'>
-              {isBlur && !emailValid && <p className="error"><span>&#10007;</span> The email you entered is missing '@'</p>}
-              {isBlur && emailValid && <p className="success"><span>&#10003;</span> The email you entered looks good</p>}
+              {emailErrorHTML()}
             </div>
         </div>
       </div>
