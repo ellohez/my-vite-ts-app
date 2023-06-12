@@ -26,13 +26,6 @@ const SignupForm = (): JSX.Element => {
     address: '',
   });
 
-  // TODO: Use this to control the focus 
-  // to make buttons navigable by keyboard
-  useEffect(() => {
-    console.log("SignUpForm useEffect");
-  }, []);
-
-
   const PageDisplay = () => {
     if (page === 1) {
       return <LoginDetails userData={userData} setUserData={setUserData} />
