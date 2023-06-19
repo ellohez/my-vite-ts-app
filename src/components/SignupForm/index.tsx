@@ -42,8 +42,9 @@ const SignupForm = (): JSX.Element => {
             Step {i + 1}
           </p>
           <p>
-            {formTitles[i]} &gt;
+            {formTitles[i]} 
           </p>
+          <i className="fa-solid fa-chevron-right"></i>
         </div>);
     }
 
